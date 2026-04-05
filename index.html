@@ -1,0 +1,569 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Belle Cuisine - Premium Dining Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f5f2 0%, #f0ebe3 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #0f0f0f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f0f0f;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4a574;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #d4a574 0%, #b5895b 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 165, 116, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #d4a574, #b5895b);
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(255,255,255,0.7);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #0f0f0f;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-category {
+            background: rgba(255,255,255,0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #0f0f0f;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d4a574;
+        }
+
+        /* Featured Dishes */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .featured-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #d4a574;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .featured-info {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .featured-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .stars {
+            color: #d4a574;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .reviewer {
+            font-weight: 600;
+            color: #0f0f0f;
+        }
+
+        /* Contact */
+        .contact {
+            background: rgba(255,255,255,0.7);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            color: #d4a574;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4a574;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">La Belle Cuisine</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#featured">Specials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#menu" class="cta-btn">Order Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>La Belle Cuisine</h1>
+            <p class="tagline">Delicious Food, Delivered Fresh</p>
+            <a href="#menu" class="cta-btn" style="font-size: 1.2rem; padding: 18px 40px;">View Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Crafted with Passion</h3>
+                    <p>At La Belle Cuisine, we believe that every meal is a celebration. Our chefs source the finest ingredients daily, creating dishes that delight both the eyes and the palate. From our family kitchen to your table, every bite tells a story of tradition and innovation.</p>
+                    <p>Experience dining elevated – where quality meets comfort, and every visit becomes a cherished memory.</p>
+                    <a href="#menu" class="cta-btn">Discover Our Menu</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1579586140626-0a612bd2ad48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Restaurant Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-category">
+                    <h3><i class="fas fa-seedling"></i> Starters</h3>
+                    <div class="menu-item">
+                        <div>
+                            <h4>Truffle Arancini</h4>
+                            <p>Crispy risotto balls with truffle cream</p>
+                        </div>
+                        <span class="price">$12</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h4>Beetroot Carpaccio</h4>
+                            <p>Thinly sliced with goat cheese & walnuts</p>
+                        </div>
+                        <span class="price">$14</span>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3><i class="fas fa-drumstick-bite"></i> Main Course</h3>
+                    <div class="menu-item">
+                        <div>
+                            <h4>Grilled Sea Bass</h4>
+                            <p>With lemon herb sauce & seasonal vegetables</p>
+                        </div>
+                        <span class="price">$32</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h4>Beef Tenderloin</h4>
+                            <p>8oz cut with red wine reduction</p>
+                        </div>
+                        <span class="price">$38</span>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3><i class="fas fa-ice-cream"></i> Desserts</h3>
+                    <div class="menu-item">
+                        <div>
+                            <h4>Chocolate Fondant</h4>
+                            <p>Warm center with vanilla ice cream</p>
+                        </div>
+                        <span class="price">$11</span>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h4>Crème Brûlée</h4>
+                            <p>Classic vanilla with caramelized top</p>
+                        </div>
+                        <span class="price">$10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes -->
+    <section id="featured" class="featured">
+        <div class="container">
+            <h2 class="section-title">Chef's Specials</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Truffle Pasta">
+                    <div class="featured-tag">Best Seller</div>
+                    <div class="featured-info">
+                        <h4>Truffle Mushroom Pasta</h4>
+                        <p>Handmade tagliatelle with wild mushrooms</p>
+                        <span class="price">$28</span>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <img src="https://images.unsplash.com/photo-1541599468178-c4e6b962d9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lamb Rack">
+                    <div class="featured-tag">Chef's Special</div>
+                    <div class="featured-info">
+                        <h4>Herb Crusted Lamb Rack</h4>
+                        <p>Perfectly pink with rosemary jus</p>
+                        <span class="price">$45</span>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.
